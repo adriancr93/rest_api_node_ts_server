@@ -1,4 +1,6 @@
 import { Router } from "express";
+import { body } from 'express-validator';
+import { createProduct } from "./handlers/product";
 
 const router = Router()
 
@@ -7,9 +9,12 @@ router.get('/', (req, res) => {
     res.json('Desde GET')
 })
 
-router.post('/', (req, res) => {
-    res.json('Desde POST')
-})
+router.post('/', 
+    //Validation
+    body('name', 'El nombre es obligatorio').notEmpty(),
+    body('price', 'El precio debe ser un número').isFloat(),
+    createProduct
+)
 
 router.put('/', (req, res) => {
     res.json('Desde PUT')
