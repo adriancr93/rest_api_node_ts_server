@@ -612,3 +612,130 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 ---
 
 ⭐ **Star this repo if you find it helpful!**
+
+### 📦 Installation
+
+```bash
+# Install Jest and Supertest
+npm install --save-dev jest @types/jest supertest @types/supertest
+
+# Install TypeScript support for Jest
+npm install --save-dev ts-jest typescript
+
+# Alternative installation (all in one command)
+npm i -D supertest @types/supertest jest @types/jest ts-jest
+
+# Initialize TypeScript Jest configuration
+npx ts-jest config:init
+```
+
+### ⚙️ Jest Configuration
+
+```json
+// jest.config.js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src', '<rootDir>/test'],
+  testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+  transform: {
+    '^.+\\.ts$': 'ts-jest',
+  },
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.d.ts',
+  ],
+};
+```
+
+### 📁 Jest File Extensions
+
+**Jest** can read test files in 3 different ways:
+
+| Extension/Location | Example | Description |
+|--------------------|---------|-------------|
+| **`.test.js/.test.ts`** | `user.test.ts` | Files with `.test` extension |
+| **`.spec.js/.spec.ts`** | `user.spec.ts` | Files with `.spec` extension |
+| **`__tests__` folder** | `__tests__/user.ts` | Files inside `__tests__` directory |
+
+### 📂 Recommended Test Structure
+
+```
+src/
+├── controllers/
+│   └── userController.ts
+├── models/
+│   └── User.ts
+└── routes/
+    └── userRoutes.ts
+
+tests/
+├── __tests__/
+│   ├── controllers/
+│   │   └── userController.test.ts
+│   └── models/
+│       └── User.test.ts
+├── integration/
+│   └── userRoutes.spec.ts
+└── setup/
+    └── testSetup.ts
+```
+
+### 🔧 Jest Extensions for VS Code
+
+**Recommended VS Code Extensions**:
+
+| Extension | Purpose | Features |
+|-----------|---------|----------|
+| **Jest** | Test runner integration | Run tests from VS Code, test results in sidebar |
+| **Jest Runner** | Individual test execution | Run single tests or test suites |
+| **Jest Snippets** | Code snippets | Quick test templates and assertions |
+
+```bash
+# Install Jest VS Code extensions
+# Search in VS Code Extensions:
+# - Jest (by Orta)
+# - Jest Runner (by firsttris)
+# - Jest Snippets (by andys8)
+```
+
+### 🎯 Test File Examples
+
+```typescript
+// users.test.ts - Unit Test
+describe('User Model', () => {
+  test('should create a new user', () => {
+    const user = new User('John', 'john@example.com');
+    expect(user.name).toBe('John');
+    expect(user.email).toBe('john@example.com');
+  });
+});
+
+// users.spec.ts - Integration Test
+describe('User API', () => {
+  test('POST /api/users should create user', async () => {
+    const response = await request(app)
+      .post('/api/users')
+      .send({ name: 'John', email: 'john@example.com' })
+      .expect(201);
+    
+    expect(response.body).toHaveProperty('id');
+  });
+});
+
+// __tests__/userService.ts - Service Test
+describe('UserService', () => {
+  beforeEach(() => {
+    // Setup before each test
+  });
+
+  afterEach(() => {
+    // Cleanup after each test
+  });
+
+  test('should validate user email', () => {
+    const isValid = UserService.validateEmail('test@example.com');
+    expect(isValid).toBe(true);
+  });
+});
+```

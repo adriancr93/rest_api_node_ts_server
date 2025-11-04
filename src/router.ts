@@ -16,7 +16,10 @@ router.get('/:id',
 router.post('/', 
     //Validation
     body('name', 'El nombre es obligatorio').notEmpty(),
-    body('price', 'El precio debe ser un número').isFloat(),
+    body('price')
+        .isNumeric().withMessage('El precio debe ser un número')
+        .notEmpty().withMessage('El precio es obligatorio')
+        .custom((value) => value > 0).withMessage('El precio debe ser mayor que 0'),
     handleInputErrors,
     createProduct
 )
@@ -24,7 +27,10 @@ router.post('/',
 //Always PUT should be have the id param
 router.put('/:id',
     body('name', 'El nombre es obligatorio').notEmpty(),
-    body('price', 'El precio debe ser un número').isFloat(),
+    body('price')
+        .isNumeric().withMessage('El precio debe ser un número')
+        .notEmpty().withMessage('El precio es obligatorio')
+        .custom((value) => value > 0).withMessage('El precio debe ser mayor que 0'),
     body('availability', 'La disponibilidad debe ser un valor booleano').isBoolean(),
     param('id', 'El id debe ser un número').isNumeric(),
     handleInputErrors,
