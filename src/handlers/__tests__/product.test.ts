@@ -56,7 +56,7 @@ describe('POST /api/products', () => {
     })
 });
 
-describe('GET /api/produts', () => {
+describe('GET /api/products', () => {
     it('should check if api/products url exists', async () => {
         const response = await request(server).get('/api/products')
 
@@ -73,4 +73,42 @@ describe('GET /api/produts', () => {
 
         expect(response.body).not.toHaveProperty('errors')
     })
+})
+
+describe('GET /api/products/:id', () => {
+    it('should return 404 response for a non-existing product', async () => {
+        const productId = 2000
+        const response = await request(server).get(`/api/products/${productId}`)
+
+        expect(response.status).toEqual(404)
+        expect(response.body).toHaveProperty('error')
+        expect(response.body.error).toBe('Producto no encontrado')
+
+        expect(response.status).not.toEqual(200)
+        expect(response.body).not.toHaveProperty('data')
+    })
+
+    it('should check a valid ID in the URL', async () => {
+        const response = await request(server).get('/api/products/not-valid-url')
+
+        expect(response.status).toBe(400)
+        expect(response.body).toHaveProperty('errors')
+        expect(response.body.errors).toHaveLength(1)
+        expect(response.body.errors[0].msg).toBe('El id debe ser un número')
+
+        expect(response.status).not.toBe(200)
+        expect(response.body).not.toHaveProperty('data')
+    })
+
+    it('get a JSON response for a single product', async () => {
+        const response = await request(server).get(`/api/products/1`)
+
+        expect(response.status).toBe(200)
+        expect(response.body).toHaveProperty('data')
+        expect(response.body.data).toHaveProperty('id', 1)
+
+        expect(response.status).not.toBe(404)
+        expect(response.body).not.toHaveProperty('errors')
+    })
+       
 })
