@@ -739,3 +739,20 @@ describe('UserService', () => {
   });
 });
 ```
+
+Code Coverage
+
+Que es y que indica?
+
+Que es?
+
+El "code coverage" (cobertura de codigo) es una metrica utilizada para medir la cantidad de codigo fuente que ha sido ejecutado o cubierto por un conjunto de pruebas.
+
+En otras palabras, mide que porcentaje del codigo de un programa ha sido probado. Cuanto mayor sea la cobertura de codigo, mas exhaustivas son las pruebas, lo que a menudo se considera un indicador positivo de la calidad del software.
+
+Metricas
+
+< 60% - No es suficiente.
+60% - 80% - Se puede mejorar
+>= 80% - Es suficiente y buena medida
+100% - Poco probable.

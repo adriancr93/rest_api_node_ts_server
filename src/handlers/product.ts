@@ -46,7 +46,7 @@ export const updateProduct = async (req: Request, res: Response) => {
         const product = await Product.findByPk(id)
 
         if (!product) {
-            return res.status(404).json({msg: 'Producto no encontrado'})
+            return res.status(404).json({error: 'Producto no encontrado'})
         }
 
         await product.update(req.body)
@@ -62,7 +62,7 @@ export const updateAvailability = async (req: Request, res: Response) => {
         const product = await Product.findByPk(id)
 
         if (!product) {
-            return res.status(404).json({msg: 'Producto no encontrado'})
+            return res.status(404).json({error: 'Producto no encontrado'})
         }
 
         product.availability = !product.dataValues.availability
@@ -80,7 +80,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
         const product = await Product.findByPk(id)
 
         if (!product) {
-            return res.status(404).json({msg: 'Producto no encontrado'})
+            return res.status(404).json({error: 'Producto no encontrado'})
         }
 
         await product.destroy()
