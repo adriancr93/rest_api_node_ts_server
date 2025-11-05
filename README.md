@@ -1,9 +1,10 @@
 # 🚀 REST API Node.js TypeScript Server
 
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -807,3 +808,28 @@ npm run test:watch -- --coverage
   }
 }
 ```
+## API Documentation
+
+### What is API documentation?
+
+API documentation is technical content that describes an API in detail. It explains how to use the API correctly and typically includes:
+- Supported endpoints and HTTP methods
+- Accepted request parameters and payload formats
+- Example requests and responses
+- Authentication and authorization requirements
+- Error codes and error response formats
+- Rate limits, pagination, and other usage rules
+
+Good documentation helps developers understand how to integrate with the API quickly and correctly.
+
+### Why document an API?
+
+The main reasons to document an API are:
+- Ensure correct and consistent usage by internal and external consumers
+- Increase adoption by making functionality clear and easy to use
+- Reduce support and onboarding costs by providing self-service guidance
+- Improve maintainability and onboarding for future contributors
+
+A clear, up-to-date API reference and examples make it easier for others to use and trust your service.
+
+
