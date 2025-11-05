@@ -739,20 +739,71 @@ describe('UserService', () => {
   });
 });
 ```
+## 📊 Code Coverage
 
-Code Coverage
+### What is Code Coverage?
 
-Que es y que indica?
+**Code Coverage** is a metric used to measure the amount of source code that has been executed or covered by a test suite.
 
-Que es?
+In other words, it measures what percentage of a program's code has been tested. The higher the code coverage, the more comprehensive the tests are, which is often considered a positive indicator of software quality.
 
-El "code coverage" (cobertura de codigo) es una metrica utilizada para medir la cantidad de codigo fuente que ha sido ejecutado o cubierto por un conjunto de pruebas.
+### 📈 Coverage Metrics
 
-En otras palabras, mide que porcentaje del codigo de un programa ha sido probado. Cuanto mayor sea la cobertura de codigo, mas exhaustivas son las pruebas, lo que a menudo se considera un indicador positivo de la calidad del software.
+| Coverage Level | Status | Description |
+|----------------|--------|-------------|
+| **< 60%** | ❌ **Not Sufficient** | Inadequate test coverage |
+| **60% - 80%** | ⚠️ **Can Be Improved** | Moderate coverage, room for improvement |
+| **>= 80%** | ✅ **Good Coverage** | Sufficient and good measure |
+| **100%** | 🎯 **Perfect (Rare)** | Complete coverage, rarely achievable in practice |
 
-Metricas
+### 🔧 Setting Up Code Coverage
 
-< 60% - No es suficiente.
-60% - 80% - Se puede mejorar
->= 80% - Es suficiente y buena medida
-100% - Poco probable.
+````typescript
+// jest.config.js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,js}',
+    '!src/**/*.d.ts',
+    '!src/index.ts',
+    '!src/**/*.test.{ts,js}'
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    }
+  }
+};
+````
+
+# Run tests with coverage
+npm run test:coverage
+
+# Alternative command
+npx jest --coverage
+
+# Generate HTML coverage report
+npm run test:coverage -- --coverageReporters=html
+
+# Watch mode with coverage
+npm run test:watch -- --coverage
+
+### 🎯  Package.json Scripts
+```
+{
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:coverage:watch": "jest --coverage --watch",
+    "test:ci": "jest --coverage --ci --watchAll=false"
+  }
+}
+```
