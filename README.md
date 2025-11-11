@@ -832,4 +832,10 @@ The main reasons to document an API are:
 
 A clear, up-to-date API reference and examples make it easier for others to use and trust your service.
 
+### Install Swagger Node Docs
 
+npm i swagger-jsdoc swagger-ui-express
+
+// Development
+
+npm i -D @types/swagger-jsdoc @types/swagger-ui-express
